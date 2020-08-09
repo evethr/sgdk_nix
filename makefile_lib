@@ -51,7 +51,7 @@ DEF_FLAGS_M68K:=-m68000 -Wall -fno-builtin -fno-pie -fno-stack-protector $(INC)
 DEF_FLAGS_Z80:=-i$(SRC_DIR) -i$(INC_DIR)
 
 release: envcheck
-release: FLAGS:=$(DEF_FLAGS_M68K) -O3 -fno-web -fno-gcse -fno-unit-at-a-time -fomit-frame-pointer
+release: FLAGS:=$(DEF_FLAGS_M68K) -O3 -fno-store-merging -fno-web -fno-gcse -fno-unit-at-a-time -fomit-frame-pointer
 release: $(SGDK)/lib/libmd.a
 
 debug: envcheck
@@ -59,7 +59,7 @@ debug: FLAGS:=$(DEF_FLAGS_M68K) -O1 -ggdb -DDEBUG=1
 debug: $(SGDK)/lib/libmd_debug.a
 
 asm: envcheck
-asm: FLAGS:=$(DEF_FLAGS_M68K) -O3 -fno-web -fno-gcse -fno-unit-at-a-time -fomit-frame-pointer -S
+asm: FLAGS:=$(DEF_FLAGS_M68K) -O3 -fno-store-merging -fno-web -fno-gcse -fno-unit-at-a-time -fomit-frame-pointer -S
 asm: $(LST)
 
 all: release

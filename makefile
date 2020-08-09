@@ -94,7 +94,7 @@ ARCH_FLAG:=-m68000
 DEF_FLAGS_M68K:=$(ARCH_FLAG) -Wall -fno-builtin -fno-pie -fno-stack-protector $(INC)
 DEF_FLAGS_Z80:=-i$(SRC_DIR) -i$(INC_DIR) -i$(RES_DIR) -i$(LIB_SRC) -i$(LIB_INC)
 
-release: FLAGS:=$(DEF_FLAGS_M68K) -O3 -fuse-linker-plugin -fno-web -fno-gcse -fno-unit-at-a-time -fomit-frame-pointer -flto
+release: FLAGS:=$(DEF_FLAGS_M68K) -O3 -fno-store-merging -fuse-linker-plugin -fno-web -fno-gcse -fno-unit-at-a-time -fomit-frame-pointer -flto
 release: LIB_MD:=$(SGDK)/lib/libmd.a
 release: BUILDTYPE=release
 release: envcheck prebuild $(OUT_DIR)/$(BIN) postbuild
@@ -104,7 +104,7 @@ debug: LIB_MD:=$(SGDK)/lib/libmd_debug.a
 debug: BUILDTYPE=debug
 debug: envcheck prebuild $(OUT_DIR)/$(BIN) $(OUT_DIR)/rom.out $(OUT_DIR)/symbols.txt postbuild
 
-asm: FLAGS:=$(DEF_FLAGS_M68K) -O3 -fuse-linker-plugin -fno-web -fno-gcse -fno-unit-at-a-time -fomit-frame-pointer -S
+asm: FLAGS:=$(DEF_FLAGS_M68K) -O3 -fno-store-merging -fuse-linker-plugin -fno-web -fno-gcse -fno-unit-at-a-time -fomit-frame-pointer -S
 asm: BUILDTYPE:=asm
 asm: envcheck prebuild $(LSTS) postbuild
 
